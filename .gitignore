@@ -1,0 +1,5 @@
+# IDE
+.project
+
+# Node.js
+node_modules/**

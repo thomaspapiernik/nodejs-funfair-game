@@ -1,0 +1,10 @@
+{
+    "name": "funfair-game",
+    "version": "1.0.0",
+    "dependencies": {
+        "body-parser": "*",
+        "consolidate": "*",
+        "dustjs-linkedin": "*",
+        "express": "*"
+    }
+}

@@ -1,0 +1,18 @@
+<div class="toolbar">
+    <a href="#/new-game" class="btn btn-sm btn-info">New game</a>
+</div>
+<div>
+    <div class="flags">
+        <img src="images/start.jpg" width="200" />
+        <img class="pull-right" src="images/finish.jpg" width="200" />
+    </div>
+    <div class="arena">
+        <div class="endline">&nbsp;</div>
+        <div ng-repeat="player in players">
+            <div class="player" ng-style="{'left': player.offset, 'width': configuration.player.width + 'px'}">
+                <img ng-src="images/[[player.image]]" height="100" />
+                <p class="details">[[player.name]]: [[player.points]] / [[configuration.totalPoints]]</p>
+            </div>
+        </div>
+    </div>
+</div>
