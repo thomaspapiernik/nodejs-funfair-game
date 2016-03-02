@@ -1,17 +1,17 @@
 Launch server
-    * node server.js
-
+```
+node server.js
+```
 Url
-    * http://localhost:8003
+```
+http://localhost:8003
+```
 
------------------------
+### Todo
 
-Todo
-    * Read mqtt msg + update MongoDB
-    * GET /games/characters
-    * Test mqtt publish
-    * Sensors mapping
-    * Launch latest game
-    * Find arena images
-
------------------------
+* Read mqtt msg + update MongoDB
+* GET /games/characters
+* Test mqtt publish
+* Sensors mapping
+* Launch latest game
+* Find arena images
