@@ -1,0 +1,9 @@
+{
+	"server": {
+		"port": 8003
+	},
+	"mqtt": {
+		"url": "mqtt://test.mosquitto.org",
+		"topic": "funfair-game"
+	}
+}

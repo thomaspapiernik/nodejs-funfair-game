@@ -48,19 +48,25 @@ funfairGameApp.controller('NewGameCtrl', ['$scope', '$http', '$location', functi
             });
     };
 
+	/**
+	 * Load characters
+	 */
+	$scope._loadCharacters = function () {
+		$http.get("/characters")
+            .success(function (response) {
+                $scope.characters = response;
+            })
+            .error(function (response) {
+                console.log("Error while loading characters");
+            });
+	};
+
     /**
      * Initialize
      */
     $scope.init = function () {
         $scope.newPlayers = {};
-
-        $scope.characters = [{
-            "name": "perso1",
-            "image": "characters/perso-1.png"
-        }, {
-            "name": "perso2",
-            "image": "characters/perso-2.png"
-        }];
+		$scope._loadCharacters();
     };
 
     $scope.init();

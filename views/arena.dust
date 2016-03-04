@@ -10,7 +10,7 @@
         <div class="endline">&nbsp;</div>
         <div ng-repeat="player in players">
             <div class="player" ng-style="{'left': player.offset, 'width': configuration.player.width + 'px'}">
-                <img ng-src="images/[[player.image]]" height="100" />
+                <img ng-src="[[player.image]]" height="100" />
                 <p class="details">[[player.name]]: [[player.points]] / [[configuration.totalPoints]]</p>
             </div>
         </div>
