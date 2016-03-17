@@ -1,5 +1,7 @@
 # IDE
 .project
+.AppleDouble/
+.DS_Store
 
 # Node.js
 node_modules/**

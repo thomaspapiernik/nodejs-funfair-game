@@ -5,9 +5,14 @@ var mqtt = require('mqtt'), path = require('path'), configuration = require(path
  * Initialize
  */
 exports.initialize = function () {
-	_client  = mqtt.connect(configuration.mqtt.url);
-	
-	_client.subscribe(configuration.mqtt.topic);
+	_client  = mqtt.connect(configuration.mqtt.url, { port : 1883,
+				  username: configuration.mqtt.user,
+				  password: configuration.mqtt.password });
+
+	_client.on('connect', function() { // When connected
+		  // subscribe to a topic
+	    _client.subscribe(configuration.mqtt.topic);
+	 });
 
 	// On message event
 	this._onMessageEvent();

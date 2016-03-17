@@ -3,7 +3,9 @@
 		"port": 8003
 	},
 	"mqtt": {
-		"url": "mqtt://test.mosquitto.org",
+		"url": "mqtt://localhost",
+		"user": "pi",
+		"password": "monta2016",
 		"topic": "funfair-game"
 	}
 }
