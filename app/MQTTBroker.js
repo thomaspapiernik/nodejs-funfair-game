@@ -5,9 +5,11 @@ var mqtt = require('mqtt'), path = require('path'), configuration = require(path
  * Initialize
  */
 exports.initialize = function () {
-	_client  = mqtt.connect(configuration.mqtt.url, { port : 1883,
-				  username: configuration.mqtt.user,
-				  password: configuration.mqtt.password });
+	_client  = mqtt.connect(configuration.mqtt.url, {
+	    "port": configuration.mqtt.port,
+        "username": configuration.mqtt.user,
+        "password": configuration.mqtt.password
+    });
 
 	_client.on('connect', function() { // When connected
 		  // subscribe to a topic
@@ -22,6 +24,7 @@ exports.initialize = function () {
  * Publish
  */
 exports.publish = function (message, callback) {
+    console.log("MQTTBroker", message);
 	return _client.publish(configuration.mqtt.topic, message, callback);
 };
 

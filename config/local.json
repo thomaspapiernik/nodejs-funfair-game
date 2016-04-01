@@ -3,9 +3,10 @@
 		"port": 8003
 	},
 	"mqtt": {
-		"url": "mqtt://localhost",
+		"url": "mqtt://10.19.1.112",
 		"user": "pi",
 		"password": "monta2016",
-		"topic": "funfair-game"
+		"topic": "funfair-game",
+		"port": 1883
 	}
 }

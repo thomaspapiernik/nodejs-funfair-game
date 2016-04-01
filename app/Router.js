@@ -26,6 +26,17 @@ exports.initialize = function (server) {
 		});
 	});
 
+	// Notify winners
+	server.post('/games/winners', function (req, res, next) {
+        if ("undefined" !== typeof(req.body.winners)) {
+            return MQTTBroker.publish("win" + req.body.winners, function () {
+                return res.json({"success": true});
+            });
+        }
+
+        return res.status(400).json({"error": "Missing 'winners' parameter"});
+    });
+
 	// Get current game
 	server.get('/games/latest', function (req, res, next) {
 		return res.json(GameModel.getCurrentGame());
@@ -42,7 +53,7 @@ exports.initialize = function (server) {
 			}));
 		});
 	});
-	
+
 	// MQTT
 	server.post('/message', function (req, res, next) {
 		if ("undefined" !== typeof(req.body.message)) {
@@ -50,7 +61,7 @@ exports.initialize = function (server) {
 				return res.json({"success": true});
 			});
 		}
-		
-		return res.status(400).json({"error": "Missing 'message' parameter"})
+
+		return res.status(400).json({"error": "Missing 'message' parameter"});
 	});
 };

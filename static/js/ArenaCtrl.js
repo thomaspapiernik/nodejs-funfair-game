@@ -47,6 +47,14 @@ funfairGameApp.controller('ArenaCtrl', ['$scope', '$http', '$interval', '$window
 
         if (0 < _winners.length) {
             console.log("Players '" + _winners.join(", ") + "' won the game");
+
+            $http.post("/games/winners", {'winners': _winners[0]})
+                .success(function (response) {
+                    console.log("Winners posted");
+                })
+                .error(function (response) {
+                    console.log("Error while posting game winners");
+                });
         }
 
         $scope.players = _players;
