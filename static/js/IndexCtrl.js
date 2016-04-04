@@ -8,7 +8,7 @@ funfairGameApp.controller('IndexCtrl', ['$scope', function ($scope) {
      */
     $scope.configuration = {
         "refreshInterval": 1000,
-        "totalPoints": 50,
+        "totalPoints": 10,
         'body': {
             'widthPercent': 90
         },

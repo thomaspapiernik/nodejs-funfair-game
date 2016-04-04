@@ -2,6 +2,8 @@
 .project
 .AppleDouble/
 .DS_Store
+.idea/
+*.iml
 
 # Node.js
 node_modules/**

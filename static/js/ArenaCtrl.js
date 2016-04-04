@@ -29,7 +29,9 @@ funfairGameApp.controller('ArenaCtrl', ['$scope', '$http', '$interval', '$window
      */
     $scope._refreshGame = function (response) {
         var _player = null, _players = [], _winners = [];
-
+        if ($scope.endOfGame) {
+            return;
+        }
         // Players
         for (var idx in response.players) {
             _player = angular.copy(response.players[idx]);
@@ -50,11 +52,22 @@ funfairGameApp.controller('ArenaCtrl', ['$scope', '$http', '$interval', '$window
 
             $http.post("/games/winners", {'winners': _winners[0]})
                 .success(function (response) {
-                    console.log("Winners posted");
-                })
+                    console.log("Player(s) '" + _winners.join(", ") + "' won the game");
+                 })
                 .error(function (response) {
                     console.log("Error while posting game winners");
                 });
+
+            $http.post("/games/start", {'totalPoints': $scope.configuration.totalPoints})
+                .success(function (response) {
+                    console.log("Game started");
+                })
+                .error(function (response) {
+                    console.log("Error while posting game start");
+                });
+
+            // End of game
+            $scope.endOfGame = true;
         }
 
         $scope.players = _players;

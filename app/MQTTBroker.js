@@ -13,9 +13,12 @@ exports.initialize = function () {
 
 	_client.on('connect', function() { // When connected
 		  // subscribe to a topic
-	    _client.subscribe(configuration.mqtt.topic);
+	    _client.subscribe(configuration.mqtt.topic.sensor);
+	    _client.subscribe(configuration.mqtt.topic.getConfig);
 	 });
 
+	// flushes the topics to avoid unexpected message when a new game starts
+	this.flushTopics();
 	// On message event
 	this._onMessageEvent();
 };
@@ -23,9 +26,13 @@ exports.initialize = function () {
 /**
  * Publish
  */
-exports.publish = function (message, callback) {
-    console.log("MQTTBroker", message);
-	return _client.publish(configuration.mqtt.topic, message, callback);
+exports.publish = function (topic, message, callback) {
+    console.log("MQTTBroker", topic, "/", message);
+//    console.log(_client);
+    ret = _client.publish(topic, message, "{qos:2}", callback);
+//    ret = _client.publish(topic, message, "{qos:2}");
+//    console.log(ret);
+	return ret;
 };
 
 /**
@@ -37,8 +44,19 @@ exports._onMessageEvent = function () {
 	// On "message" event
 	_client.on('message', function (topic, message) {
 		_playerIndex = parseInt(message.toString(), 10);
+		console.log("_onMessageEvent", topic, "/", _playerIndex);
 
 		// Update player points
 		GameModel.incrementPlayerPoints(_playerIndex, _defaultPoints);
 	});
 };
+
+/**
+ * Flushes all the topics set in the configuration object
+ */
+exports.flushTopics = function(){
+	for(var _topic in configuration.mqtt.topic) {
+//		console.log("flush ", configuration.mqtt.topic[_topic]);
+		_client.publish(configuration.mqtt.topic[_topic], "", "{qos:2, retain:true}");
+	}
+}

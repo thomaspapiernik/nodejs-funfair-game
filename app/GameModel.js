@@ -1,4 +1,4 @@
-var _currentGame = null;
+var _currentGame = null, path = require('path'), MQTTBroker = require(path.join(BASE_DIR, "app/MQTTBroker.js"));
 
 /**
  * Create game
@@ -35,10 +35,14 @@ exports.incrementPlayerPoints = function (playerIndex, points) {
 	if (_currentGame) {
 		if (("undefined" !== typeof(_currentGame.players)) && ("undefined" !== typeof(_currentGame.players[playerIndex]))) {
 			_currentGame.players[playerIndex].points += points;
+	        return MQTTBroker.publish("player/score/" + playerIndex, _currentGame.players[playerIndex].points, function () {
+	                return;
+	            });			
 		} else {
 			console.log("Player " + playerIndex + " not found");
 		}
 	} else {
 		console.log("There is no game in progress");
 	}
+
 };
