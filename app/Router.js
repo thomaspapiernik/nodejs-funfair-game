@@ -26,6 +26,28 @@ exports.initialize = function (server) {
 		});
 	});
 
+	// Notify winners
+	server.post('/games/winners', function (req, res, next) {
+		console.log("POST player wins...");
+        if ("undefined" !== typeof(req.body.winners)) {
+            return MQTTBroker.publish("player/win/" + req.body.winners, "", function () {
+                return res.json({"success": true});
+            });
+        }
+        return res.status(400).json({"error": "Missing 'winners' parameter"});
+    });
+
+	// Notify players that game starts and sends the totalPoints to complete
+	server.post('/games/start', function (req, res, next) {
+		console.log("POST game starts...");
+        if ("undefined" !== typeof(req.body.totalPoints)) {
+	        return MQTTBroker.publish("player/start",req.body.totalPoints, function () {
+	            return res.json({"success": true});
+	        });
+        }
+        return res.status(400).json({"error": "Missing 'start' parameter"});
+    });
+
 	// Get current game
 	server.get('/games/latest', function (req, res, next) {
 		return res.json(GameModel.getCurrentGame());
@@ -36,21 +58,20 @@ exports.initialize = function (server) {
 		glob(path.join(BASE_DIR, 'static/images/characters/*'), function (err, files) {
 			return res.json(files.map(function (file) {
 				return {
-					"name": path.basename(file),
+					"name": path.basename(file).split(".")[0],
 					"image": path.join("images/characters", path.basename(file))
 				}
 			}));
 		});
 	});
-	
+
 	// MQTT
 	server.post('/message', function (req, res, next) {
 		if ("undefined" !== typeof(req.body.message)) {
-			return MQTTBroker.publish(req.body.message, function () {
+			return MQTTBroker.publish("message", req.body.message, function () {
 				return res.json({"success": true});
 			});
 		}
-		
-		return res.status(400).json({"error": "Missing 'message' parameter"})
+		return res.status(400).json({"error": "Missing 'message' parameter"});
 	});
 };

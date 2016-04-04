@@ -2,10 +2,24 @@
 	"server": {
 		"port": 8003
 	},
+	"game": {
+		"boosterCoef": 1.5,
+		"totalPoints":50
+	},
 	"mqtt": {
 		"url": "mqtt://localhost",
+		"port" : 1883,
 		"user": "pi",
 		"password": "monta2016",
-		"topic": "funfair-game"
+		"topic": {
+			"sensor": "player/sensor",
+			"start":"player/start",
+			"score":"player/score",
+			"reset":"player/reset",
+			"clear":"player/clear",
+			"win":"player/win",
+			"getConfig":"config/get",
+			"setConfig":"config/set"
+		}
 	}
 }
