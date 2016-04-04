@@ -1,0 +1,70 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/phaser/2.4.6/phaser.js"></script>
+        <script type="text/javascript">
+
+
+        var game = new Phaser.Game(800, 600, Phaser.CANVAS, 'phaser-example', { preload: preload, create: create, update: update, render: render });
+
+        function preload() {
+            game.load.atlasJSONHash('cat', 'images/sprites/running_cat.png', 'images/sprites/running_cat.json');
+            game.load.image('bg', 'images/background/mountain.png');
+        }
+
+        var s;
+        var running = false;
+
+        function create () {
+
+            // background
+            var background = game.add.sprite(0, 0, 'bg', 'background');
+
+            // sprite
+            cat = game.add.sprite(0, 180, 'cat', 'cat/walk/running_cat_02');
+            cat.scale.setTo(0.5,0.5);
+
+            // animation
+            cat.animations.add('walk', Phaser.Animation.generateFrameNames('cat/walk/', 1, 8, '', 4), 10, true, false);
+            cat.animations.play('walk');
+
+        }
+
+        function update() {
+
+            if (s.x > -150) {
+                s.x -= 2;
+            }
+            if (0 > s.x) {
+                s.x = 860;
+            }
+
+            if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
+            {
+                s.x -= 4;
+            }
+            else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
+            {
+                s.x += 4;
+            }
+
+            if (game.input.keyboard.isDown(Phaser.Keyboard.UP))
+            {
+                s.y -= 4;
+            }
+            else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
+            {
+                s.y += 4;
+            }
+
+        }
+
+        function render() {
+            game.debug.spriteInfo(s, 20, 32);
+
+        }
+        </script>
+            </head>
+    <body>
+    </body>
+</html>
