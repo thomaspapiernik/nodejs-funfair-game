@@ -41,21 +41,21 @@ funfairGameApp.controller('NewGameCtrl', ['$scope', '$http', '$location', functi
 
         $http.post("/games", {'players': _players})
             .success(function (response) {
-                $scope.endOfGame = false;
                 $location.url("/arena");
             })
             .error(function (response) {
-                console.log("Error while posting game informations");
+                console.log("Error while posting game information");
             });
-        console.log("Game starting..." + $scope.configuration.totalPoints + " points to complete");
+        console.log(new Date().toISOString(),"- Game starting..." + $scope.configuration.totalPoints + " points to complete");
         $http.post("/games/start", {'totalPoints': $scope.configuration.totalPoints})
 //        $http.post("/games/start", $scope.configuration.totalPoints)
                 .success(function (response) {
-                    console.log("Game started");
+                    console.log(new Date().toISOString(),"- Game started");
                 })
                 .error(function (response) {
                     console.log("Error while posting game start");
                 });
+        $scope.endOfGame = false;
     };
 
 	/**

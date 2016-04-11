@@ -20,7 +20,7 @@ funfairGameApp.controller('ArenaCtrl', ['$scope', '$http', '$interval', '$window
                 }
             })
             .error(function (response) {
-                console.log("Error while loading game informations");
+                console.log("Error while loading game information");
             });
     };
 
@@ -28,10 +28,11 @@ funfairGameApp.controller('ArenaCtrl', ['$scope', '$http', '$interval', '$window
      * Refresh game
      */
     $scope._refreshGame = function (response) {
-        var _player = null, _players = [], _winners = [];
         if ($scope.endOfGame) {
             return;
         }
+        var _player = null, _players = [], _winners = [];
+
         // Players
         for (var idx in response.players) {
             _player = angular.copy(response.players[idx]);
@@ -48,24 +49,14 @@ funfairGameApp.controller('ArenaCtrl', ['$scope', '$http', '$interval', '$window
         }
 
         if (0 < _winners.length) {
-            console.log("Players '" + _winners.join(", ") + "' won the game");
-
             $http.post("/games/winners", {'winners': _winners[0]})
                 .success(function (response) {
-                    console.log("Player(s) '" + _winners.join(", ") + "' won the game");
+                    console.log(new Date().toISOString(),"- Player(s) '" + _winners.join(", ") + "' won the game");
                  })
                 .error(function (response) {
                     console.log("Error while posting game winners");
                 });
-
-            $http.post("/games/start", {'totalPoints': $scope.configuration.totalPoints})
-                .success(function (response) {
-                    console.log("Game started");
-                })
-                .error(function (response) {
-                    console.log("Error while posting game start");
-                });
-
+            _player.points=0;
             // End of game
             $scope.endOfGame = true;
         }

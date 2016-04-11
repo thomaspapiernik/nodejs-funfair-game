@@ -1,0 +1,92 @@
+{"frames": {
+
+"Run__000.png":
+{
+	"frame": {"x":0,"y":0,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__001.png":
+{
+	"frame": {"x":0,"y":138,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__002.png":
+{
+	"frame": {"x":0,"y":276,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__003.png":
+{
+	"frame": {"x":0,"y":414,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__004.png":
+{
+	"frame": {"x":0,"y":552,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__005.png":
+{
+	"frame": {"x":0,"y":690,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__006.png":
+{
+	"frame": {"x":0,"y":828,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__007.png":
+{
+	"frame": {"x":0,"y":966,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__008.png":
+{
+	"frame": {"x":0,"y":1104,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+},
+"Run__009.png":
+{
+	"frame": {"x":0,"y":1242,"w":100,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":100,"h":138},
+	"sourceSize": {"w":100,"h":138}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "ninjagirl.png",
+	"format": "RGBA8888",
+	"size": {"w":100,"h":1380},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:6fe40221d78bad48c58fed6f123b2013:476ae1d0715b852d275045762a62e7d5:bc410753f1543118ffff4dabefdb4dbc$"
+}
+}

@@ -9,11 +9,35 @@ funfairGameApp.controller('IndexCtrl', ['$scope', function ($scope) {
     $scope.configuration = {
         "refreshInterval": 1000,
         "totalPoints": 10,
-        'body': {
-            'widthPercent': 90
+        "body": {
+            "widthPercent": 90
         },
         "player": {
             "width": 50
+        },
+        "character":{
+            "runner":{
+                "sprite": {
+                    "filename" : "runner.png",
+                    "json": "runner.json",
+                    "imagecount":8
+                }
+            },
+            "maya":{
+                "sprite": {
+                    "filename" : "maya.png",
+                    "json": "maya.json",
+                    "imagecount":2
+                }
+            }
+        },
+        "background":{
+            "back1":{
+                "filename" : "back1.png"
+            },
+            "back2":{
+                "filename" : "back2.png"
+            }
         }
     };
 

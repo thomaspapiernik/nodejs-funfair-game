@@ -1,5 +1,5 @@
 var glob = require('glob'), path = require('path'), MQTTBroker = require(path.join(BASE_DIR, "app/MQTTBroker.js")),
-	GameModel = require(path.join(BASE_DIR, "app/GameModel.js"));
+	GameModel = require(path.join(BASE_DIR, "app/GameModel.js")), configuration = require(path.join(BASE_DIR, "config/local.json"));
 
 /**
  * Initialize
@@ -28,20 +28,21 @@ exports.initialize = function (server) {
 
 	// Notify winners
 	server.post('/games/winners', function (req, res, next) {
-	    console.log("POST player wins...");
+	    console.log(new Date().toISOString(),"- POST player wins...");
         if ("undefined" !== typeof(req.body.winners)) {
-            return MQTTBroker.publish(configuration.topics.win + "/" + req.body.winners, "", function () {
+            return MQTTBroker.publish(configuration.mqtt.topic.win + "/" + req.body.winners, "", function () {
                 return res.json({"success": true});
             });
+            return MQTTBroker.flushTopics();
         }
         return res.status(400).json({"error": "Missing 'winners' parameter"});
     });
 
 	// Notify players that game starts and sends the totalPoints to complete
 	server.post('/games/start', function (req, res, next) {
-		console.log("POST game starts...");
+		console.log(new Date().toISOString(),"- POST game starts for", req.body.totalPoints,"points ...");
         if ("undefined" !== typeof(req.body.totalPoints)) {
-	        return MQTTBroker.publish("player/start", req.body.totalPoints, function () {
+	        return MQTTBroker.publish(configuration.mqtt.topic.start, req.body.totalPoints, function () {
 	            return res.json({"success": true});
 	        });
         }
@@ -70,7 +71,8 @@ exports.initialize = function (server) {
 	server.post('/message', function (req, res, next) {
 		if ("undefined" !== typeof(req.body.message)) {
 			return MQTTBroker.publish(configuration.topics.message, req.body.message, function () {
-				return res.json({"success": true});
+//				return res.json({"success": true});
+				return;
 			});
 		}
 

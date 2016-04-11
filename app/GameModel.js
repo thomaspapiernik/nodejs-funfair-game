@@ -39,10 +39,10 @@ exports.incrementPlayerPoints = function (playerIndex, points) {
 	                return;
 	            });			
 		} else {
-			console.log("Player " + playerIndex + " not found");
+			console.log(new Date().toISOString(),"- Player " + playerIndex + " not found");
 		}
 	} else {
-		console.log("There is no game in progress");
+		console.log(new Date().toISOString(),"- There is no game in progress");
 	}
 
 };

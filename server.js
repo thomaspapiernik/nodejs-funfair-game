@@ -1,10 +1,13 @@
-var express = require('express'), server = express(), path = require('path'), http = require('http'), dust = require('dustjs-linkedin'),
+var express = require('express'), 
+	server = express(), path = require('path'), 
+	http = require('http'), dust = require('dustjs-linkedin'),
     consolidate = require('consolidate'), bodyParser = require('body-parser');
 
 global.BASE_DIR = __dirname;
 
 var configuration = require(path.join(BASE_DIR, "config/local.json")),
-	Router = require(path.join(BASE_DIR, "app/Router.js")), MQTTBroker = require(path.join(BASE_DIR, "app/MQTTBroker.js"));
+	Router = require(path.join(BASE_DIR, "app/Router.js")), 
+	MQTTBroker = require(path.join(BASE_DIR, "app/MQTTBroker.js"));
 
 /**
  * Configuration

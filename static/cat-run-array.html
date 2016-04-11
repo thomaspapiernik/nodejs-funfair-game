@@ -4,17 +4,18 @@
         <meta charset="UTF-8" />
         <title>TexurePacker+Phaser Demo!</title>
         <script src="js/phaser.min.js"></script>
+        <script src="js/IndexCtrl.js"></script>
     </head>
     <body>
         <input type="button" value="Move" onclick="movePlayer(runner, 50);"></input>
         <input type="button" value="Pause" onclick="actionPlayers(true);"></input>
         <input type="button" value="Resume" onclick="actionPlayers(false);"></input>
         <script>
-            var capguy, cat, runner, dragon, stopGame=false;
+            var characters[],capguy, cat, runner, dragon, stopGame=false;
 
 			window.onload = function() {
 
-			    var game = new Phaser.Game(1200, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+			    var game = new Phaser.Game(window.outerWidth, window.outerHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
 			    function preload () {
 			        game.load.atlasJSONHash('cityscene', 'images/sprites/cityscene.png', 'images/sprites/cityscene.json');
@@ -25,7 +26,6 @@
 			        game.load.atlasJSONHash('dragon', 'images/sprites/dragon.png', 'images/sprites/dragon.json');
 			        game.load.atlasJSONHash('maya', 'images/sprites/maya.png', 'images/sprites/maya.json');
 			        game.load.atlasJSONHash('advgirl', 'images/sprites/adventuregirl.png', 'images/sprites/adventuregirl.json');
-			        game.load.atlasJSONHash('advgirl_idle', 'images/sprites/adventuregirl_idle.png', 'images/sprites/adventuregirl_idle.json');
 			        game.load.image('b1', 'images/numbers/1.png');
 			        game.load.image('b2', 'images/numbers/2.png');
 			        game.load.image('b3', 'images/numbers/3.png');
@@ -171,11 +171,9 @@
 				stopGame = bool;
 				if (bool){
 					runner.animations.stop(null, true);
-					runner.animations.setFrame(0, true);
-					advgirl.loadTexture('advgirl_idle', 0, false);
+					runner.animations.setFrame(0, true)
 				} else {
 					runner.animations.play('walk');
-					advgirl.loadTexture('advgirl', 0, false);
 				}
             };
         </script>
