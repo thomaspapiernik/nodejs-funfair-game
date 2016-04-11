@@ -3,6 +3,7 @@
 Launch server
 ```
 node server.js
+NODE_CONFIG=/<path>/config/dev-mbl.json node server.js
 ```
 Url
 ```

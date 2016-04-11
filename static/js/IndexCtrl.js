@@ -15,6 +15,10 @@ funfairGameApp.controller('IndexCtrl', ['$scope', function ($scope) {
         "player": {
             "width": 50
         },
+        "arena": {
+           "width": 1200,
+           "height": 600
+        },
         "character":{
             "runner":{
                 "sprite": {

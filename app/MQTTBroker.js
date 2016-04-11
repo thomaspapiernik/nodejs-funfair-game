@@ -1,4 +1,4 @@
-var mqtt = require('mqtt'), path = require('path'), configuration = require(path.join(BASE_DIR, "config/local.json")),
+var mqtt = require('mqtt'), path = require('path'), configuration = require(CONFIG_FILE),
 	_client = null, GameModel = require(path.join(BASE_DIR, "app/GameModel.js"));
 
 /**
@@ -6,9 +6,9 @@ var mqtt = require('mqtt'), path = require('path'), configuration = require(path
  */
 exports.initialize = function () {
 	_client  = mqtt.connect(configuration.mqtt.url, {
-	    "port": configuration.mqtt.port,
+	    "port": configuration.mqtt.port/*,
         "username": configuration.mqtt.user,
-        "password": configuration.mqtt.password
+        "password": configuration.mqtt.password*/
     });
 
 	// flushes the topics to avoid unexpected message when a new game starts
@@ -18,6 +18,9 @@ exports.initialize = function () {
 		  // subscribe to a topic
 	    _client.subscribe(configuration.mqtt.topic.sensor);
 	    _client.subscribe(configuration.mqtt.topic.getConfig);
+	    _client.subscribe(configuration.mqtt.topic.message);
+
+	    console.log('LA');
 	 });
 
 	// On message event
@@ -31,6 +34,7 @@ exports.publish = function (topic, message, callback) {
     console.log(new Date().toISOString(), "- Publish -> ", topic, "/", message);
 //    console.log(_client);
 //	return _client.publish(topic, message.toString(), "{qos:0, retain:true}");
+return _client.publish(topic, message.toString(), callback);
 	return _client.publish(topic, message.toString(), {qos:configuration.mqtt.topic.qos, retain:configuration.mqtt.topic.retain}, callback);
 };
 
@@ -50,6 +54,10 @@ exports._onMessageEvent = function () {
 		} else if (configuration.mqtt.topic.getConfig==topic) {
 //			_client.publish(configuration.mqtt.topic.setConfig, "32|128", "{qos:0}");
 			return _client.publish(configuration.mqtt.topic.setConfig, "32|128", {qos:configuration.mqtt.topic.qos, retain:configuration.mqtt.topic.retain});
+		} else if (configuration.mqtt.topic.message==topic) {
+            _playerIndex = parseInt(message.toString(), 10);
+            // Update player points
+            GameModel.incrementPlayerPoints(_playerIndex, _defaultPoints);
 		}
 	});
 };

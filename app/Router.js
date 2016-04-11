@@ -1,5 +1,5 @@
 var glob = require('glob'), path = require('path'), MQTTBroker = require(path.join(BASE_DIR, "app/MQTTBroker.js")),
-	GameModel = require(path.join(BASE_DIR, "app/GameModel.js")), configuration = require(path.join(BASE_DIR, "config/local.json"));
+	GameModel = require(path.join(BASE_DIR, "app/GameModel.js")), configuration = require(CONFIG_FILE);
 
 /**
  * Initialize
@@ -57,11 +57,11 @@ exports.initialize = function (server) {
 
 	// Characters
 	server.get('/characters', function (req, res, next) {
-		glob(path.join(BASE_DIR, 'static/images/characters/*'), function (err, files) {
+		glob(path.join(BASE_DIR, 'static/images/characters/sprites/*.png'), function (err, files) {
 			return res.json(files.map(function (file) {
 				return {
 					"name": path.basename(file).split(".")[0],
-					"image": path.join("images/characters", path.basename(file))
+					"image": path.join("images/characters/sprites", path.basename(file))
 				}
 			}));
 		});
@@ -70,9 +70,8 @@ exports.initialize = function (server) {
 	// MQTT
 	server.post('/message', function (req, res, next) {
 		if ("undefined" !== typeof(req.body.message)) {
-			return MQTTBroker.publish(configuration.topics.message, req.body.message, function () {
-//				return res.json({"success": true});
-				return;
+			return MQTTBroker.publish(configuration.mqtt.topic.message, req.body.message, function () {
+				return res.json({"success": true});
 			});
 		}
 

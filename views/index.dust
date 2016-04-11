@@ -8,6 +8,7 @@
         <script type="text/javascript" src="js/lib/angular.min.js"></script>
         <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/lib/angular-route.js"></script>
+        <script type="text/javascript" src="js/lib/phaser.js"></script>
         <script type="text/javascript" src="js/FunfairGame.js"></script>
         <script type="text/javascript" src="js/IndexCtrl.js"></script>
         <script type="text/javascript" src="js/ArenaCtrl.js"></script>
