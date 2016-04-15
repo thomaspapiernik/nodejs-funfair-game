@@ -49,7 +49,7 @@ funfairGameApp.controller('IndexCtrl', ['$scope', function ($scope) {
      * Initialize
      */
     $scope.init = function () {
-
+        $scope.startOfGame = false;
     };
 
     $scope.init();

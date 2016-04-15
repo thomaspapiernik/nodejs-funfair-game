@@ -11,8 +11,8 @@
         <script type="text/javascript" src="js/lib/phaser.js"></script>
         <script type="text/javascript" src="js/FunfairGame.js"></script>
         <script type="text/javascript" src="js/IndexCtrl.js"></script>
-        <script type="text/javascript" src="js/ArenaCtrl.js"></script>
         <script type="text/javascript" src="js/NewGameCtrl.js"></script>
+        <script type="text/javascript" src="js/ArenaCtrl.js"></script>
     </head>
     <body ng-controller="IndexCtrl" ng-style="{'width': configuration.body.widthPercent + '%'}">
         <ng-view></ng-view>

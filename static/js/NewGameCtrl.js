@@ -56,6 +56,8 @@ funfairGameApp.controller('NewGameCtrl', ['$scope', '$http', '$location', functi
                     console.log("Error while posting game start");
                 });
         $scope.endOfGame = false;
+        $scope.startOfGame = true;
+        console.log("$scope.startOfGame",$scope.startOfGame);
     };
 
 	/**
@@ -64,7 +66,9 @@ funfairGameApp.controller('NewGameCtrl', ['$scope', '$http', '$location', functi
 	$scope._loadCharacters = function () {
 		$http.get("/characters")
             .success(function (response) {
+        console.log("_loadCharacters");
                 $scope.characters = response;
+        console.log("$scope.characters",$scope.characters);
             })
             .error(function (response) {
                 console.log("Error while loading characters");
@@ -77,6 +81,7 @@ funfairGameApp.controller('NewGameCtrl', ['$scope', '$http', '$location', functi
     $scope.init = function () {
         $scope.newPlayers = {};
 		$scope._loadCharacters();
+//        $scope.startOfGame = false;
     };
 
     $scope.init();

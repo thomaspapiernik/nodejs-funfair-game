@@ -7,7 +7,7 @@
 		"totalPoints": 50
 	},
 	"mqtt": {
-		"url": "mqtt://192.168.0.22",
+		"url": "mqtt://localhost",
 		"port" : 1883,
 		"user": "pi",
 		"password": "monta2016",

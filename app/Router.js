@@ -57,11 +57,12 @@ exports.initialize = function (server) {
 
 	// Characters
 	server.get('/characters', function (req, res, next) {
-		glob(path.join(BASE_DIR, 'static/images/characters/sprites/*.png'), function (err, files) {
+		glob(path.join(BASE_DIR, 'static/images/characters/menu/*.png'), function (err, files) {
 			return res.json(files.map(function (file) {
 				return {
 					"name": path.basename(file).split(".")[0],
-					"image": path.join("images/characters/sprites", path.basename(file))
+					"action":path.basename(file).split(".")[1],
+					"image": path.join("images/characters/menu", path.basename(file))
 				}
 			}));
 		});
